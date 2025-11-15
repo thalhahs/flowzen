@@ -26,7 +26,7 @@ export function Tasks() {
 
 export function TaskItem({ task }: { task: Task }) {
   return (
-    <section className="p-4 bg-sky-100 rounded-lg">
+    <section className="rounded-lg bg-sky-100 p-4">
       <h2 className="text-lg font-bold">{task.title}</h2>
       <p>{task.isDone ? "✅ Done" : "📝 Todo"}</p>
     </section>
