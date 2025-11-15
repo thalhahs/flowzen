@@ -1,8 +1,6 @@
 export function Profile() {
-  return (
-    <img
-      src="https://unsplash.com/photos/a-large-clock-tower-towering-over-the-city-of-london-ZPm77Deio00"
-      alt="London Clock Tower"
-    />
-  );
+  const imageUrl = "https://unsplash.com/photos/bald-man-in-sunglasses-dancing-in-studio-SQ5SFrjoXy4";
+  const name = "Karsten Winegeart";
+
+  return <img src={imageUrl} alt={name} />;
 }
