@@ -1,3 +1,6 @@
+import { Button } from "@/components/ui/button";
+import { EyeIcon, TrashIcon } from "lucide-react";
+
 type Task = {
   id: number;
   title: string;
@@ -26,9 +29,21 @@ export function Tasks() {
 
 export function TaskItem({ task }: { task: Task }) {
   return (
-    <section className="rounded-lg bg-sky-100 p-4">
-      <h2 className="text-lg font-bold">{task.title}</h2>
-      <p>{task.isDone ? "✅ Done" : "📝 Todo"}</p>
+    <section className="flex justify-between gap-4 rounded-lg bg-sky-100 p-4">
+      <div>
+        <h2 className="text-lg font-bold">{task.title}</h2>
+        <p>{task.isDone ? "✅ Done" : "📝 Todo"}</p>
+      </div>
+      <div className="flex gap-2">
+        <Button size="xs">
+          <EyeIcon className="size-3" />
+          <span className="text-xs">View</span>
+        </Button>
+        <Button variant="destructive" size="xs">
+          <TrashIcon className="size-3" />
+          <span className="text-xs">Delete</span>
+        </Button>
+      </div>
     </section>
   );
 }
