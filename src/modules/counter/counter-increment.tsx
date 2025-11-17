@@ -1,7 +1,11 @@
+import { useState } from "react";
+
 export function CounterIncrement() {
+  const [count, setCount] = useState(0);
+
   return (
     <div>
-      <h1>Counter Increment</h1>
+      <p>Count Value: {count}</p>
     </div>
   );
 }
