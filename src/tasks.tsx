@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { EyeIcon, TrashIcon } from "lucide-react";
+import { useState } from "react";
 
 type Task = {
   id: number;
@@ -9,29 +10,38 @@ type Task = {
 
 type Tasks = Task[];
 
-const dataTasks: Tasks = [
+const initialDataTasks: Tasks = [
   { id: 1, title: "Breakfast", isDone: true },
   { id: 2, title: "Lunch", isDone: false },
   { id: 3, title: "Dinner", isDone: false },
 ];
 
 export function Tasks() {
+  const [tasks, setTasks] = useState(initialDataTasks);
+
+  function handleDelete(id: number) {
+    const updatedTasks = tasks.filter((task) => task.id !== id);
+    setTasks(updatedTasks);
+  }
+
   return (
     <ul className="flex flex-col gap-4">
-      {dataTasks.map((task) => (
+      {tasks.map((task) => (
         <li key={task.id}>
-          <TaskItem task={task} />
+          <TaskItem task={task} handleDelete={handleDelete} />
         </li>
       ))}
     </ul>
   );
 }
 
-export function TaskItem({ task }: { task: Task }) {
-  function handleDelete() {
-    console.log("Deleted");
-  }
-
+export function TaskItem({
+  task,
+  handleDelete,
+}: {
+  task: Task;
+  handleDelete: (id: number) => void;
+}) {
   return (
     <section className="flex justify-between gap-4 rounded-lg bg-sky-100 p-4">
       <div>
@@ -43,7 +53,11 @@ export function TaskItem({ task }: { task: Task }) {
           <EyeIcon className="size-3" />
           <span className="text-xs">View</span>
         </Button>
-        <Button variant="destructive" size="xs" onClick={handleDelete}>
+        <Button
+          variant="destructive"
+          size="xs"
+          onClick={() => handleDelete(task.id)}
+        >
           <TrashIcon className="size-3" />
           <span className="text-xs">Delete</span>
         </Button>
