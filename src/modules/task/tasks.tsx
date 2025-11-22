@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { EyeIcon, TrashIcon } from "lucide-react";
 import { useState } from "react";
 
@@ -25,14 +27,30 @@ export function Tasks() {
     setTasks(updatedTasks);
   }
 
+  function handleCreate(event: any) {
+    event.preventDefault();
+
+    console.log("Handle Create");
+  }
+
   return (
-    <ul className="flex flex-col gap-4">
-      {tasks.map((task) => (
-        <li key={task.id}>
-          <TaskItem task={task} handleDelete={() => handleDelete(task.id)} />
-        </li>
-      ))}
-    </ul>
+    <section className="space-y-8">
+      <form method="post" onSubmit={handleCreate} className="space-y-2">
+        <div className="space-y-2">
+          <Label htmlFor="title">Title:</Label>
+          <Input id="title" type="text" name="title" />
+        </div>
+        <Button type="submit">Create Task</Button>
+      </form>
+
+      <ul className="flex flex-col gap-4">
+        {tasks.map((task) => (
+          <li key={task.id}>
+            <TaskItem task={task} handleDelete={() => handleDelete(task.id)} />
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
 
