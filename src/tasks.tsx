@@ -19,15 +19,17 @@ const initialDataTasks: Tasks = [
 export function Tasks() {
   const [tasks, setTasks] = useState(initialDataTasks);
 
-  function handleDelete() {
-    console.log("Deleted");
+  function handleDelete(id: number) {
+    const updatedTasks = tasks.filter((task) => task.id !== id);
+
+    setTasks(updatedTasks);
   }
 
   return (
     <ul className="flex flex-col gap-4">
       {tasks.map((task) => (
         <li key={task.id}>
-          <TaskItem task={task} handleDelete={handleDelete} />
+          <TaskItem task={task} handleDelete={() => handleDelete(task.id)} />
         </li>
       ))}
     </ul>
