@@ -46,6 +46,8 @@ export function Tasks() {
     const updatedTasks: Tasks = [...tasks, newTask];
 
     setTasks(updatedTasks);
+
+    event.currentTarget.reset();
   }
 
   return (
