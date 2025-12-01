@@ -1,11 +1,23 @@
-import { useParams } from "react-router";
-import { initialDataTasks } from "@/modules/task/data";
+import type { Tasks } from "@/modules/task/schema";
+import { Link, useParams } from "react-router";
 
 export function TaskId() {
   const params = useParams();
   const { taskId } = params;
 
-  const task = initialDataTasks.find((task) => task.id === Number(taskId));
+  const storedTasks = localStorage.getItem("tasks");
+  if (!storedTasks) {
+    return (
+      <div>
+        <h1>Tasks data unavailable</h1>
+        <Link to="/">Go to home</Link>
+      </div>
+    );
+  }
+
+  const parsedTasks = JSON.parse(storedTasks) as Tasks;
+
+  const task = parsedTasks.find((task) => task.id === Number(taskId));
 
   if (!task) {
     return (
