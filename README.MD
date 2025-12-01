@@ -2,5 +2,5 @@
 
 1. Clone the repo  
    ```bash
-   git clone https://github.com/thalhahs/task-management.git
+   git clone https://github.com/thalhahs/flowzen.git
    cd task-management
