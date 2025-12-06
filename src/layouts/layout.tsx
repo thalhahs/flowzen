@@ -11,7 +11,7 @@ export function Layout() {
             className="flex items-center gap-2 text-2xl font-bold text-primary transition-colors hover:text-primary/80"
           >
             <CheckSquareIcon className="size-6" />
-            Task Manager
+            Flowzen
           </Link>
 
           <ul className="inline-flex gap-4">
